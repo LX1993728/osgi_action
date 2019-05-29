@@ -13,6 +13,7 @@
         <osgi.version>5.0.0</osgi.version>
         <bundle.plugin.version>4.2.0</bundle.plugin.version>
         <spring.osgi.version>1.2.1</spring.osgi.version>
+        <spring.version>3.1.1.RELEASE</spring.version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -22,8 +23,26 @@
             <groupId>org.springframework.osgi</groupId>
             <artifactId>org.springframework.osgi.extensions.annotation</artifactId>
             <version>${spring.osgi.version}</version>
-            <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.osgi</groupId>
+            <artifactId>spring-osgi-io</artifactId>
+            <version>${spring.osgi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.osgi</groupId>
+            <artifactId>spring-osgi-core</artifactId>
+            <version>${spring.osgi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -47,6 +66,14 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>${bundle.plugin.version}</version>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>
@@ -58,6 +85,7 @@
                         <!--</Bundle-Activator>-->
                         <Export-Package>springdm.provider.test</Export-Package>
                         <Private-Package>
+                            springdm.provider.test.serviceImpl
                         </Private-Package>
                         <Import-Package>
                             !org.springframework.*,
