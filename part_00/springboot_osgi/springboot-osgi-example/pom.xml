@@ -81,12 +81,12 @@
         </dependency>
 
         <!--引用bundles-->
-        <dependency>
-            <groupId>com.liuxun.springdm</groupId>
-            <artifactId>springdm-provider-test</artifactId>
-            <version>1.0</version>
+<!--        <dependency>-->
+<!--            <groupId>com.liuxun.springdm</groupId>-->
+<!--            <artifactId>springdm-provider-test</artifactId>-->
+<!--            <version>1.0</version>-->
 <!--            <scope>bundle</scope>-->
-        </dependency>
+<!--        </dependency>-->
     </dependencies>
 
     <build>
