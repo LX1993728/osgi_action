@@ -18,14 +18,14 @@ public class SpringbootOsgiExample {
         /**
          * 这是一套统一的规范，不管使用了什么依赖进行的实现，这个都不变
          */
-        ServiceLoader<FrameworkFactory> ffs = ServiceLoader.load(FrameworkFactory.class);
-        FrameworkFactory ff = ffs.iterator().next();
-        Map<String,String> config = new HashMap<>();
-        // add some params to config ...
-        Framework fwk = ff.newFramework(config);
-        fwk.init();
-        fwk.start();
-        BundleUtils.framework = fwk;
+//        ServiceLoader<FrameworkFactory> ffs = ServiceLoader.load(FrameworkFactory.class);
+//        FrameworkFactory ff = ffs.iterator().next();
+//        Map<String,String> config = new HashMap<>();
+//        // add some params to config ...
+//        Framework fwk = ff.newFramework(config);
+//        fwk.init();
+//        fwk.start();
+//        BundleUtils.framework = fwk;
 
         SpringApplication.run(SpringbootOsgiExample.class, args);
     }

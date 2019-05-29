@@ -18,6 +18,7 @@
         <java.version>1.8</java.version>
         <osgi.version>5.0.0</osgi.version>
         <bundle.plugin.version>4.2.0</bundle.plugin.version>
+        <spring.osgi.version>1.2.1</spring.osgi.version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -49,10 +50,22 @@
         <dependency>
             <groupId>org.springframework.osgi</groupId>
             <artifactId>spring-osgi-io</artifactId>
-            <version>1.2.1</version>
+            <version>${spring.osgi.version}</version>
         </dependency>
 
-        <!--引入OSGI核心框架-->
+        <dependency>
+            <groupId>org.springframework.osgi</groupId>
+            <artifactId>spring-osgi-core</artifactId>
+            <version>${spring.osgi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.osgi</groupId>
+            <artifactId>org.springframework.osgi.extensions.annotation</artifactId>
+            <version>${spring.osgi.version}</version>
+        </dependency>
+
+        <!--引入OSGI核心框架规范-->
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
@@ -60,12 +73,20 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--引入OSGI框架规范的实现-->
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.framework</artifactId>
             <version>3.0.0</version>
         </dependency>
 
+        <!--引用bundles-->
+        <dependency>
+            <groupId>com.liuxun.springdm</groupId>
+            <artifactId>springdm-provider-test</artifactId>
+            <version>1.0</version>
+            <scope>bundle</scope>
+        </dependency>
     </dependencies>
 
     <build>

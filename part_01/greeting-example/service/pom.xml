@@ -2,17 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>greeting-example</artifactId>
+        <groupId>com.liuxun.osgi</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.liuxun.osgi</groupId>
-    <artifactId>greeting-example</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <artifactId>service</artifactId>
 
     <modules>
-        <module>modularity</module>
-        <module>service</module>
+        <module>com.service.hello</module>
+        <module>com.liuxun.service.client</module>
+        <module>com.liuxun.service.main</module>
     </modules>
-
 
 </project>
