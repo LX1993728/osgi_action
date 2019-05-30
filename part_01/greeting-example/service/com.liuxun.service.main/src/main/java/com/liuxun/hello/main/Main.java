@@ -1,22 +1,30 @@
 package com.liuxun.hello.main;
 
 import com.liuxun.service.Greeting;
-import org.apache.felix.framework.Felix;
+import com.liuxun.service.impl.GreetingImpl;
 import org.osgi.framework.*;
+import org.osgi.framework.launch.Framework;
+import org.osgi.framework.launch.FrameworkFactory;
 
 import javax.xml.ws.Service;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ServiceLoader;
 
+/**
+ * @author liuxun
+ */
 public class Main {
-    static Felix m_framework;
+    static Framework m_framework;
 
     public static void main(String[] args) throws Exception {
         try {
-            final Map configMap = new HashMap();
-            configMap.put(Constants.FRAMEWORK_STORAGE_CLEAN, "onFirstInit");
-            m_framework = new Felix(configMap);
+            ServiceLoader<FrameworkFactory> ffs = ServiceLoader.load(FrameworkFactory.class);
+            FrameworkFactory frameworkFactory = ffs.iterator().next();
+            Map<String,String> config = new HashMap<>();
+            m_framework= frameworkFactory.newFramework(config);
             m_framework.init();
+            m_framework.start();
 
             final BundleContext context = m_framework.getBundleContext();
 
@@ -30,11 +38,15 @@ public class Main {
             ServiceReference[] registeredServices = provider.getRegisteredServices();
             System.out.println("services= " + registeredServices.length);
 
-            ServiceReference reference = context.getServiceReference(Greeting.class.getName());
-//            System.out.println(Greeting.class.getName()+" ++++++ "+reference.);
+
+//            ServiceReference reference = context.getServiceReference(Greeting.class.getName());
+//            System.out.println(Greeting.class.getName()+" ++++++ "+reference);
 //            ((Greeting)context.getService(reference)).sayHello(" Maven build B ");
 
 
+            BundleContext bundleContext = FrameworkUtil.getBundle(GreetingImpl.class).getBundleContext();
+            ServiceReference<Greeting> serviceReference = bundleContext.getServiceReference(Greeting.class);
+            Greeting service = bundleContext.getService(serviceReference);
 
             consumer.start();
             consumer.stop();

@@ -13,11 +13,17 @@
     <packaging>jar</packaging>
 
 
+    <properties>
+        <osgi.version>5.0.0</osgi.version>
+    </properties>
+
     <dependencies>
+
         <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.framework</artifactId>
-            <version>3.0.0</version>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>${osgi.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -27,6 +33,11 @@
             <type>bundle</type>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>3.0.0</version>
+        </dependency>
     </dependencies>
 
 
