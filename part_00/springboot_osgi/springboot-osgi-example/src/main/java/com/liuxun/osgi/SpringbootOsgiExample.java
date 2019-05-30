@@ -1,32 +1,31 @@
 package com.liuxun.osgi;
 
+import com.liuxun.osgi.controller.ControllerConfig;
 import com.liuxun.osgi.utils.BundleUtils;
-import org.osgi.framework.launch.Framework;
-import org.osgi.framework.launch.FrameworkFactory;
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Import;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ServiceLoader;
 
-@SpringBootApplication
-public class SpringbootOsgiExample {
+@Import(ControllerConfig.class)
+@SpringBootConfiguration
+@EnableAutoConfiguration
+public class SpringbootOsgiExample implements BundleActivator {
+    ConfigurableApplicationContext appContext;
 
-    public static void main(String[] args) throws Exception{
+    @Override
+    public void start(BundleContext bundleContext) throws Exception {
+        Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
+        BundleUtils.bundleContext = bundleContext;
+        appContext = SpringApplication.run(SpringbootOsgiExample.class);
+    }
 
-        /**
-         * 这是一套统一的规范，不管使用了什么依赖进行的实现，这个都不变
-         */
-        ServiceLoader<FrameworkFactory> ffs = ServiceLoader.load(FrameworkFactory.class);
-        FrameworkFactory ff = ffs.iterator().next();
-        Map<String,String> config = new HashMap<>();
-        // add some params to config ...
-        Framework fwk = ff.newFramework(config);
-        fwk.init();
-        fwk.start();
-        BundleUtils.framework = fwk;
-
-        SpringApplication.run(SpringbootOsgiExample.class, args);
+    @Override
+    public void stop(BundleContext bundleContext) throws Exception {
+        SpringApplication.exit(appContext, () -> 0);
     }
 }

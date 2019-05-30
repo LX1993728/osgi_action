@@ -5,13 +5,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>1.5.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.liuxun.osgi</groupId>
     <artifactId>springboot-osgi-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot-osgi-example</name>
+    <packaging>bundle</packaging>
     <description>springboot嵌入osgi</description>
 
     <properties>
@@ -46,38 +47,12 @@
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
 
-        <!--OSGI与Spring整合的依赖-->
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>spring-osgi-io</artifactId>
-            <version>${spring.osgi.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>spring-osgi-core</artifactId>
-            <version>${spring.osgi.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>org.springframework.osgi.extensions.annotation</artifactId>
-            <version>${spring.osgi.version}</version>
-        </dependency>
-
         <!--引入OSGI核心框架规范-->
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
             <version>${osgi.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!--引入OSGI框架规范的实现-->
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.framework</artifactId>
-            <version>3.0.0</version>
         </dependency>
 
         <!--引用bundles-->
@@ -87,13 +62,50 @@
 <!--            <version>1.0</version>-->
 <!--            <scope>bundle</scope>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>com.liuxun.osgi</groupId>
+            <artifactId>com.service.hello</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${bundle.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>
+                            ${project.groupId}.${project.artifactId}
+                        </Bundle-SymbolicName>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Bundle-Activator>
+                            com.liuxun.osgi.SpringbootOsgiExample
+                        </Bundle-Activator>
+                        <Export-Package>
+                            com.liuxun.osgi,org.springframework.boot
+                        </Export-Package>
+                        <Private-Package>
+                            com.liuxun.osgi.*
+                        </Private-Package>
+                        <Import-Package>
+                            !org.springframework.*,
+                            *;resolution:=optional
+                        </Import-Package>
+                        <Embed-Dependency>
+                            *;scope=compile
+                        </Embed-Dependency>
+                        <Embed-Transitive>
+                            true
+                        </Embed-Transitive>
+                    </instructions>
+                    <buildDirectory>target/deploy</buildDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
