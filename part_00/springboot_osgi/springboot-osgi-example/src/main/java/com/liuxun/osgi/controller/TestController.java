@@ -17,14 +17,19 @@ import java.util.ServiceLoader;
 public class TestController {
 
 
-
     @GetMapping("/test")
-    public String test() throws Exception{
+    public String test() throws Exception {
         final Framework framework = BundleUtils.framework;
         BundleContext context = framework.getBundleContext();
 
+//        Bundle provider = context.installBundle("file:/c:/Users/Administrator/Desktop/bundles/springdm-provider-test-1.0.jar");
+
+//        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/com.service.hello-1.0.jar");
 //        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/springdm-provider-test-1.0.jar");
-        Bundle provider = context.installBundle("file:/c:/Users/Administrator/Desktop/bundles/springdm-provider-test-1.0.jar");
+//        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/springdm-osgi-example-1.0.0.jar");
+
+        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/OSGiDmHelloWorldProvider-1.0.jar");
+
         provider.start();
         ServiceReference<?>[] registeredServices = provider.getRegisteredServices();
         System.out.println(registeredServices.length);
