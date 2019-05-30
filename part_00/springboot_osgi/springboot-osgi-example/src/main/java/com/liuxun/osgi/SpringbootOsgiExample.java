@@ -2,8 +2,10 @@ package com.liuxun.osgi;
 
 import com.liuxun.osgi.controller.ControllerConfig;
 import com.liuxun.osgi.utils.BundleUtils;
+import com.liuxun.service.Greeting;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
