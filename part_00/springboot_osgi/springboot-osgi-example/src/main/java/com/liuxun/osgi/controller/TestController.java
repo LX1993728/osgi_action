@@ -12,6 +12,8 @@ import org.osgi.framework.launch.Framework;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 public class TestController {
 
@@ -21,26 +23,10 @@ public class TestController {
 
         BundleContext context = BundleUtils.bundleContext;
 
-//        Bundle provider = context.installBundle("file:/c:/Users/Administrator/Desktop/bundles/springdm-provider-test-1.0.jar");
-//        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/springdm-osgi-example-1.0.0.jar");
+        ServiceReference<Greeting> serviceReference = context.getServiceReference(Greeting.class);
+        Greeting service = context.getService(serviceReference);
+        service.sayHello("today time is "+ (new Date()));
 
-//        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/com.service.hello-1.0.jar");
-//        Bundle provider = context.installBundle("file:/c:/Users/Administrator/Desktop/bundles/com.service.hello-1.0.jar");
-
-//        Bundle provider = context.installBundle("file:/Users/liuxun//Downloads/test/bundles/OSGiDmHelloWorldProvider-1.0.jar");
-
-//        provider.start();
-//        ServiceReference<?>[] registeredServices = provider.getRegisteredServices();
-//        System.out.println(registeredServices.length);
-
-//        ServiceReference<Greeting> serviceReference = context.getServiceReference(Greeting.class);
-//        Greeting service = context.getService(serviceReference);
-
-        ServiceReference<?> reference = context.getServiceReference(Greeting.class.getName());
-        System.out.println(Greeting.class.getName()+" ++++++ "+reference);
-        ((Greeting)context.getService(reference)).sayHello(" Maven build BUndle");
-
-//        provider.stop();
         return "测试是否能正常运行";
     }
 
