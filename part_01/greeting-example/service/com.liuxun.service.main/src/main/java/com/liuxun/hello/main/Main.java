@@ -1,26 +1,25 @@
 package com.liuxun.hello.main;
 
-import com.liuxun.service.impl.GreetingImpl;
+import com.service.api.Greeting;
+import org.apache.felix.framework.Felix;
 import org.osgi.framework.*;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ServiceLoader;
 
 /**
  * @author liuxun
  */
 public class Main {
-    static Framework m_framework;
+     static Felix m_framework;
 
     public static void main(String[] args) throws Exception {
         try {
-            ServiceLoader<FrameworkFactory> ffs = ServiceLoader.load(FrameworkFactory.class);
-            FrameworkFactory frameworkFactory = ffs.iterator().next();
-            Map<String,String> config = new HashMap<>();
-            m_framework= frameworkFactory.newFramework(config);
+            final Map configMap = new HashMap();
+            configMap.put(Constants.FRAMEWORK_STORAGE_CLEAN, "onFirstInit");
+            m_framework = new Felix(configMap);
             m_framework.init();
             m_framework.start();
 
@@ -42,9 +41,8 @@ public class Main {
 //            ((Greeting)context.getService(reference)).sayHello(" Maven build B ");
 
 
-            BundleContext bundleContext = FrameworkUtil.getBundle(GreetingImpl.class).getBundleContext();
-            ServiceReference<Greeting> serviceReference = bundleContext.getServiceReference(Greeting.class);
-            Greeting service = bundleContext.getService(serviceReference);
+            ServiceReference<Greeting> serviceReference = m_framework.getBundleContext().getServiceReference(Greeting.class);
+            Greeting service = m_framework.getBundleContext().getService(serviceReference);
 
             consumer.start();
             consumer.stop();
