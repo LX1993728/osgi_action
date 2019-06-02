@@ -1,14 +1,10 @@
 package com.liuxun.osgi.controller;
 
 //import com.liuxun.osgi.utils.BundleUtils;
-//import com.liuxun.service.Greeting;
 import com.liuxun.osgi.utils.BundleUtils;
-import com.liuxun.service.Greeting;
-import org.osgi.framework.Bundle;
+import com.service.api.Greeting;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
-import org.osgi.framework.launch.Framework;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

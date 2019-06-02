@@ -1,6 +1,6 @@
 package com.liuxun.service.client;
 
-import com.liuxun.service.Greeting;
+import com.service.api.Greeting;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;

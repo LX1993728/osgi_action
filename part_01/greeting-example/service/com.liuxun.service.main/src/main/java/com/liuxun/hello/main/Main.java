@@ -1,12 +1,10 @@
 package com.liuxun.hello.main;
 
-import com.liuxun.service.Greeting;
 import com.liuxun.service.impl.GreetingImpl;
 import org.osgi.framework.*;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
-import javax.xml.ws.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;

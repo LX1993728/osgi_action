@@ -64,7 +64,7 @@
 <!--        </dependency>-->
         <dependency>
             <groupId>com.liuxun.osgi</groupId>
-            <artifactId>com.service.hello</artifactId>
+            <artifactId>com.service.api</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>

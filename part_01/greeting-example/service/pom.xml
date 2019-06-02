@@ -12,6 +12,7 @@
     <artifactId>service</artifactId>
 
     <modules>
+        <module>com.service.api</module>
         <module>com.service.hello</module>
         <module>com.liuxun.service.client</module>
         <module>com.liuxun.service.main</module>

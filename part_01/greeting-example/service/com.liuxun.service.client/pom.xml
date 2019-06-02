@@ -21,9 +21,9 @@
     <dependencies>
         <dependency>
             <groupId>com.liuxun.osgi</groupId>
-            <artifactId>com.service.hello</artifactId>
+            <artifactId>com.service.api</artifactId>
             <version>1.0</version>
-            <type>bundle</type>
+            <scope>provided</scope>
         </dependency>
 
         <!--引入OSGI核心框架规范-->
