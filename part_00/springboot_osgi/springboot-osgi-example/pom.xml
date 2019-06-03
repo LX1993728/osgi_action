@@ -55,16 +55,16 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--引用bundles-->
-<!--        <dependency>-->
-<!--            <groupId>com.liuxun.springdm</groupId>-->
-<!--            <artifactId>springdm-provider-test</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.liuxun.osgi</groupId>-->
+            <!--<artifactId>com.service.api</artifactId>-->
+            <!--<version>1.0</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
         <dependency>
-            <groupId>com.liuxun.osgi</groupId>
-            <artifactId>com.service.api</artifactId>
+            <groupId>com.liuxun.scr</groupId>
+            <artifactId>ds-annotation-api</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
