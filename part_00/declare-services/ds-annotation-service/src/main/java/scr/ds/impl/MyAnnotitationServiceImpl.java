@@ -12,7 +12,7 @@ public class MyAnnotitationServiceImpl implements MyAnnotitationService {
 
     @Override
     public String getPatternDateStr(Date date) {
-
+//        System.out.println("This is a service bundle that be updated");
         return dateFormat.format(new Date()) + "+++++++++++++++";
     }
 }
