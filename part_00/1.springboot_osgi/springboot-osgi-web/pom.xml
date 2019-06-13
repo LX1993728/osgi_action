@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.liuxun.osgi</groupId>
-    <artifactId>springboot-osgi-example</artifactId>
+    <artifactId>springboot-osgi-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-osgi-example</name>
+    <name>springboot-osgi-web</name>
     <packaging>bundle</packaging>
     <description>springboot嵌入osgi</description>
 
