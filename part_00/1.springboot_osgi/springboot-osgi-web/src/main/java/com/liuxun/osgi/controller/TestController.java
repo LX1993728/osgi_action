@@ -15,17 +15,17 @@ import java.util.*;
 public class TestController {
 
 
-//    @GetMapping("/test")
-//    public String test() throws Exception {
-//
-//        BundleContext context = BundleUtils.bundleContext;
-//
-//        ServiceReference<Greeting> serviceReference = context.getServiceReference(Greeting.class);
-//        Greeting service = context.getService(serviceReference);
-//        service.sayHello("today time is "+ (new Date()));
-//
-//        return "测试是否能正常运行";
-//    }
+    @GetMapping("/test")
+    public String test() throws Exception {
+
+        MyAnnotitationService service = BundleUtils.findServiceDynamic(MyAnnotitationService.class);
+        if (service != null){
+            String dateStr = service.getPatternDateStr(new Date());
+            System.out.println(dateStr);
+            return  dateStr;
+        }
+        return null;
+    }
 
     @GetMapping("/test1")
     public Object test1() throws Exception {

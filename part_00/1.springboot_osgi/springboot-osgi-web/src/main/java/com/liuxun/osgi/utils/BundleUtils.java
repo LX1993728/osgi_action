@@ -13,6 +13,21 @@ public class BundleUtils {
     public static BundleContext bundleContext;
 
     /**
+     * @apiNote 由OSGI自动的选择一个存在的service引用实现（根据Rank等一些权重值，一般在只存在单独版本时使用此方法）
+     * @param serviceClass  服务类的class类型
+     * @param <T>   服务类的对象类型
+     * @return  返回服务类对象
+     */
+    public static <T> T findServiceDynamic(Class<T> serviceClass){
+        final ServiceReference<T> reference = bundleContext.getServiceReference(serviceClass);
+        if (reference != null){
+            T service = bundleContext.getService(reference);
+            return service;
+        }
+        return null;
+    }
+
+    /**
      * @param serviceClass  服务的接口类的class
      * @param bundleVersion 服务实现类所在bundle的版本
      * @param <T>           服务接口类型
